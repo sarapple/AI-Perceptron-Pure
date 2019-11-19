@@ -1,22 +1,12 @@
 class Reader:
   @staticmethod
   def csv(input_file_name):
-    return [
-      [8,-11,1],
-      [7,7,-1],
-      [12,-20,1],
-      [14,-3,-1],
-      [12,8,-1],
-      [1,-12,1],
-      [15,5,-1],
-      [7,-10,1],
-      [10,4,-1],
-      [6,2,1],
-      [8,12,-1],
-      [2,20,-1],
-      [1,-12,1],
-      [9,8,-1],
-      [3,3,1],
-      [5,6,1],
-      [1,11,1],
+    f = open(input_file_name, "r")
+    full_page = f.read()
+    rows = [
+      [
+        int(c) for c in rows.split(",")
+      ] for rows in full_page.split("\n") if rows != ''
     ]
+
+    return rows

@@ -22,8 +22,15 @@ class Visualizer:
       [x[1] for x in category_2],
       'bo'
     )
+    
+    # avoid division by zero
+    if weights[2] == 0: return
+    if weights[1] == 0: return
 
-    Visualizer.abline((weights[1]/weights[2] if weights[2] != 0 else 0), weights[0])
+    slope = -1 * ((weights[0]/weights[2])/(weights[0]/weights[1]))
+    intercept = -weights[0]/weights[2]
+
+    Visualizer.abline(slope, intercept)
 
     plt.savefig(file_name)
     plt.clf()
