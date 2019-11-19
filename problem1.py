@@ -3,6 +3,7 @@ import sys
 from perceptron_learning import PerceptronLearning
 from reporter import Reporter
 from reader import Reader
+from visualizer import Visualizer
 
 def main():
   input_csv_file_name = sys.argv[1]
@@ -19,18 +20,34 @@ def main():
   previous_weights = [0, 0, 0]
   weights = None
 
-  while (weights != previous_weights or iterations >= max_iterations):
+  Reporter.write_output(file_name = output_csv_file_name, content = "", should_overwrite_file = True)
+
+  while (weights != previous_weights and iterations <= max_iterations):
     if (weights != None):
       # update previous weight
       previous_weights = weights
+
+    # import ipdb; ipdb.set_trace()
   
-    # weights will be list in the form of [w_1, w_2, b]
+    # weights will be list in the form of [b of w_0, w_1, w_2]
     weights = PerceptronLearning.run(
-      training_values = input_values,
+      training_inputs = input_values,
       initial_weights = previous_weights,
       iterations = 1
     )
-    Reporter.write_output(file_name = output_csv_file_name, values = weights)
+
+    Reporter.write_output(
+      file_name = output_csv_file_name,
+      content = ','.join(map(str, [weights[1], weights[2], weights[0]])) + "\n",
+    )
+
+    Visualizer.draw_chart(
+      input_values = input_values,
+      weights = weights,
+      file_name = "figures/figure_" + str(iterations)
+    )
+    
+    iterations += 1
 
 if __name__ == '__main__':
     main()

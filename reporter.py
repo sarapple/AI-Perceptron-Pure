@@ -2,11 +2,11 @@ class Reporter:
   @staticmethod
   def write_output(
     file_name = "output.txt",
-    values = []
+    content = "",
+    should_overwrite_file = False
   ):
-    f = open(file_name, "w+")
-    
-    content = ','.join(map(str, values))
+    option = "w+" if should_overwrite_file else "a"
+    f = open(file_name, option)
 
     f.write(
       ""
