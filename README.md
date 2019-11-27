@@ -6,5 +6,8 @@ Each iteration will print a comma separated list of w_1, w_2, and b until conver
 
 # To Run
 
-python3 problem1.py input1.csv outpu1.csv
+python3 problem1.py input1.csv output1.csv
 
+# Visualization
+
+All incremental steps of the algorithm displaying the data and the decision boundary are shown in the `figures/` folder. 
